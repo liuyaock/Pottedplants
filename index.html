@@ -229,7 +229,7 @@
                     <span>特色盆器</span>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -286,7 +286,12 @@
 
 <script>
     var mySwiper = new Swiper('.swiper-container', {
-        autoplay: true,
+        autoplay: {
+            disableOnInteraction: false,
+            delay:1000
+        },
+        observer:true,
+        observeParents:true,
         loop: true,
 
         effect: 'coverflow',
