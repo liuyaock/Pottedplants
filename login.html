@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="./assets/css/animate.min.css" />
+
+    <!-- swiper.css -->
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+
+    <!-- 重置样式 -->
+    <link rel="stylesheet/less" href="./assets/css/reset.less" />
+
+    <!-- 公共样式 -->
+    <link rel="stylesheet/less" href="./assets/css/common.less" />
+
+    <!-- 页面单独的样式 -->
+    <link rel="stylesheet/less" href="./assets/css/login.less" />
+</head>
+
+<body>
+    <div id="loginPage">
+        <div class="back">
+            <img src="./assets/images/register_bg.png" />
+        </div>
+
+        <div class="logo">
+            <img src="./assets/images/logo.png" />
+        </div>
+
+        <form id="login">
+            <table>
+                <tr>
+                    <td colspan="2">用户登录</td>
+                </tr>
+                <tr>
+                    <td>用户名：</td>
+                    <td><input type="text" name="username" required /></td>
+                </tr>
+
+                <tr>
+                    <td>密码：</td>
+                    <td><input type="password" name="password" required /></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button type="submit">登陆</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">一份绿色装点你的生活</td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
+<!-- 解析less的文件 -->
+<script src="./assets/js/less.min.js"></script>
+
+<!-- jquery  -->
+<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+
+<!-- bootstrap -->
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+
+<!-- wow.js -->
+<script src="./assets/js/wow.min.repeat.js"></script>
+
+<script src="./assets/js/swiper-bundle.min.js"></script>
+
+<script>
+    new WOW().init();
+</script>
+
+<script>
+    //全局获取缓存中的用户信息
+    var userlist = localStorage.getItem('userlist')
+
+    if (!userlist) {
+        userlist = []
+    } else {
+        userlist = JSON.parse(userlist)
+    }
+
+
+    //表单验证 登录验证
+    $("#login").submit(function (e) {
+        //阻止元素的默认功能
+        e.preventDefault()
+
+        if (userlist.length <= 0) {
+            alert('该网站暂时无人注册')
+            return false
+        }
+
+        //定义个当前的用户信息
+        var LoginUser = null
+
+        var username = $.trim($(`input[name='username']`)[0].value)
+
+        //循环判断
+        for (var key = 0; key < userlist.length; key++) {
+            //每次都去判断循环的这个人的用户名是否等于当前输入的
+            if (userlist[key].username == username) {
+                //把这个人的信息保存起来
+                LoginUser = userlist[key]
+                break
+            }
+        }
+
+        if (!LoginUser) {
+            alert('您输入的用户不存在')
+            return false
+        }
+
+
+        //获取输入密码，缓存中的密码
+        var password = $.trim($(`input[name='password']`)[0].value)
+
+        if (password != LoginUser.password) {
+            alert('您输入的密码错误，请重新输入')
+            return false
+        }
+
+        //跳转页面
+        location.href = './user.html'
+        return false
+    })
+</script>

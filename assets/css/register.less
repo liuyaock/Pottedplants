@@ -1,0 +1,77 @@
+.register {
+    height: 100%;
+    width: 100%;
+
+    .back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .logo {
+        width: 50%;
+        margin: 0 auto;
+        position: relative;
+        top: 3em;
+    }
+
+    #register {
+        position: relative;
+        top: 7em;
+        width: 80%;
+        height: 20em;
+        margin: 0 auto;
+        padding-top: 1em;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+
+        table {
+            margin: 0 auto;
+
+            tr {
+                color: #999;
+
+                td {
+                    height: 3em;
+                    line-height: 3em;
+
+                    input {
+                        height: 2em;
+                        border: 1px solid #96bbab;
+                        border-radius: 50px 50px 50px 50px;
+
+                        &:hover {
+                            box-shadow: 0px 0px 10px #96bbab;
+                        }
+                    }
+
+                    &:first-child {
+                        text-align: right;
+                    }
+                }
+
+                &:last-child {
+                    td {
+                        text-align: center;
+
+                        button {
+                            border: 1px solid #96bbab;
+                            background-color: #fff;
+                            width: 18em;
+                            height: 3em;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
